@@ -5,4 +5,4 @@ while(isNaN(clac1)===true && isNaN(clac2)===true){
   calc2 = parseInt(prompt("Entrer votre deuxieme nombre a calculer"));
 }
 var total = calc1 + clac2;
-alaert(total);
+alert(total);
