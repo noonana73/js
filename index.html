@@ -11,6 +11,7 @@ var ball = {
 var gravity = 0.2;
 setInterval(dessinball, 100);
 function dessinball(){
+	mouvementball();
         ctx.clearRect(1,1,698,498);
 	ctx.beginPath();
 	ctx.arc(ball.posX,ball.posY,ball.radius,0,2*Math.PI);
