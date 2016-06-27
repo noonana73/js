@@ -10,17 +10,9 @@ var ball = {
 var gravity = 0.2;
 setInterval(dessinball,10);
 function dessinball(){
-	mouvement_ball();
 	ctx.fillStyle = 'white';
         ctx.fillRect(1,1,698,498);
 	ctx.fillStyle = 'black';
-	ctx.beginPath();
 	ctx.arc(ball.posX,ball.posY,10,0,360);
-}
-function mouvement_ball(){
-      ball.VY += gravity;
-      ball.posX += ball.VX;
-      ball.posY += ball.VY;
-      
 }
 </script>
