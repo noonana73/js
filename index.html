@@ -9,9 +9,7 @@ var ball = {
 };
 var gravity = 0.2;
 function dessinball(){
-	mouvementball();
-        ctx.fillRect(1,1,698,498);
-	ctx.fillStyle = 'black';
+        ctx.clearRect();
 	ctx.beginPath();
 	ctx.arc(ball.posX,ball.posY,ball.radius,0,2*Math.PI);
 	ctx.closePath();
