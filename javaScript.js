@@ -1,12 +1,19 @@
-var nicks = [], // Création du tableau vide
-    nick;
 
-while (nick = prompt('Entrez un prénom :')) { // Si la valeur assignée à la variable « nick » est valide (différente de « null ») alors la boucle s'exécute
-    nicks.push(nick + " "); // Ajoute le nouveau prénom au tableau
-}
-
-if (nicks.length > 0) { // On regarde le nombre d'items
-    alert(nicks); // Affiche les prénoms à la suite
-} else {
-    alert('Il n\'y a aucun prénom en mémoire !');
+var ctx = document.getElementById("ctx").getContext("2d");
+var ball = {
+     posX: 350,
+	 posY: 250,
+	 speedX: 1,
+	 speedY: 0.4
+};
+setInterval(dessinball,10);
+function dessinball(){
+	ctx.fillStyle = 'white';
+    ctx.fillRect(1,1,698,498);
+	ctx.fillStyle = 'black';
+	ctx.beginPath();
+	ctx.arc(ball.posX,ball.posY,10,0,360);
+	ctx.fill();
+	ball.posX = ball.posX + ball.speedX;
+	ball.posY = ball.posY + ball.speedY;
 }
