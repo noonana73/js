@@ -10,7 +10,7 @@ var ball = {
 var gravity = 0.2;
 dessinball();
 function dessinball(){
-        ctx.clearRect();
+        ctx.clearRect(1,1,698,498);
 	ctx.beginPath();
 	ctx.arc(ball.posX,ball.posY,ball.radius,0,2*Math.PI);
 	ctx.closePath();
