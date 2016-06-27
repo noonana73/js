@@ -16,9 +16,9 @@ function dessinball(){
     ctx.fillRect(1,1,698,498);
 	ctx.fillStyle = 'black';
 	ctx.beginPath();
-	ctx.arc(ball[0].posX,ball[0].posY,10,0,360);
+	ctx.arc(Balls[0].posX,Balls[0].posY,10,0,360);
 	ctx.fill();
-	ball.posX = ball.posX + ball.speedX;
-	ball.posY = ball.posY + ball.speedY;
+	Balls[0].posX = Balls[0].posX + Balls[0].speedX;
+	Balls[0].posY = Balls[0].posY + Balls[0].speedY;
 }
 </script>
