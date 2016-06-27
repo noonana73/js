@@ -7,13 +7,16 @@ var ball = {
 	 speedX: 1,
 	 speedY: 0.4
 };
+var Balls[] = {
+	ball{100,100,1,1};
+}
 setInterval(dessinball,10);
 function dessinball(){
 	ctx.fillStyle = 'white';
     ctx.fillRect(1,1,698,498);
 	ctx.fillStyle = 'black';
 	ctx.beginPath();
-	ctx.arc(ball.posX,ball.posY,10,0,360);
+	ctx.arc(ball[0].posX,ball[0].posY,10,0,360);
 	ctx.fill();
 	ball.posX = ball.posX + ball.speedX;
 	ball.posY = ball.posY + ball.speedY;
