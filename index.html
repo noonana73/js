@@ -53,7 +53,7 @@
 	function collision_balle(){
 		for(var i = 0; i < nbr_circles; i ++){
 			for(var v = v+1; v < nbr_circles-1; v ++){
-				if(Math.abs(balls[i].posX - balls[v].posX) > 80 && Math.abs(balls[i].posY - balls[v].posY) > 80){
+				if(Math.abs(balls[i].posX - balls[v].posX) > 80 ){
 				attente = balls[i].VX;
 				console.log("cc");
 				balls[i].VX = -balls[v].VX;
