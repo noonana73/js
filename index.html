@@ -15,7 +15,7 @@ var frotement = 0.995;
 setInterval(dessinball, 10);
 canv.addEventListener('mousedown', 
 function(pos){//si on presse la souris
-	if(Math.abs(pos.pageX - ball.posX) < ball.radius*2 && Math.abs(pos.pageY - ball.posY) < ball.radius*2){
+	if(Math.abs(pos.pageX - ball.posX) < ball.radius && Math.abs(pos.pageY - ball.posY) < ball.radius){
 		console.log("cc");
 	}
 });
