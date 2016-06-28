@@ -27,7 +27,7 @@ function mouvementball(){
       ball.posX += ball.VX;
       ball.posY += ball.VY;
       if(ball.posY + ball.radius > canv.height){
-      	ball.VY = -ball.VY;
+      	ball.VY = -ball.VY-gravity;
       }
       
 }
