@@ -15,9 +15,9 @@ balls.push ({
      radius: 20
 });
 }
-var gravity = 0.02;
-var frotement = 0.9993;
-setInterval(dessinball, 10);
+var gravity = 0.1;
+var frotement = 0.999;
+setInterval(dessinball, 50);
 canv.addEventListener('mousedown', 
 function(pos){//si on presse la souris
 	if(Math.abs(pos.pageX - ball.posX - ball.radius/2) < ball.radius && Math.abs(pos.pageY - ball.posY - ball.radius/2) < ball.radius){
