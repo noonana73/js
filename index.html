@@ -31,6 +31,7 @@
 	        		ctx.beginPath();
 		for(var i = 0; i < nbr_circles; i ++){
 		mouvementball(i);
+		collision_balle();
 		ctx.arc(balls[i].posX,balls[i].posY,balls[i].radius,0,2*Math.PI);
 		ctx.fill();
 	        ctx.closePath();
@@ -38,7 +39,6 @@
 	}
 	//change la position de la balle
 	function mouvementball(i){
-		collision_balle();
 	      balls[i].VY += gravity;
 	      balls[i].VX *= frotement;
 	      balls[i].VY *= frotement;
