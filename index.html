@@ -4,38 +4,49 @@
 	var canv = document.getElementById("ctx");
 	var ctx = canv.getContext("2d");
 	var balls = [];
-	var nbr_circles = 15;
+	var nbr_circles = 20;
 	var attente = 0;
 	
 	for(var i = 0; i < nbr_circles; i ++){
 	balls.push ({
 	     posX: Math.random() * canv.width-20,
 	     posY: Math.random() * canv.height-20,
-	     VX: Math.random() * canv.width/400,
+	     VX: (Math.random()-0.5) * canv.width/200,
 	     VY: 0,
 	     radius: 20
 	});
 	}
 	var gravity = 0.2;
 	var frotement = 0.995;
-	setInterval(dessinball, 25);
-	canv.addEventListener('mousedown', 
-	function(pos){//si on presse la souris
-		if(Math.abs(pos.pageX - ball.posX - ball.radius/2) < ball.radius && Math.abs(pos.pageY - ball.posY - ball.radius/2) < ball.radius){
-			console.log("cc");
-		}
-	});
+	setInterval(update, 25);
+  canv.addEventListener('mousedown', function(e){
+    mouseDown = true;
+    mouseX = e.pageX;
+    mouseY = e.pageY;
+  });
+
+  canv.addEventListener('mouseup', function(e){
+    mouseDown = false;
+  });
+  canv.addEventListener('mousemove', function(e){
+    mouseX = e.pageX;
+    mouseY = e.pageY;
+  });
 	//dessine la balle
-	function dessinball(){
-	        ctx.clearRect(0,0,canv.width,canv.height);
-	        		ctx.beginPath();
-		for(var i = 0; i < nbr_circles; i ++){
+	function update(){
+	    ctx.clearRect(0,0,canv.width,canv.height);
+		ctx.beginPath();
+		for(var i = 0; i < nbr_circles-1; i ++){
+		collision_balle(i);
 		mouvementball(i);
-		collision_balle();
+		dessinBall(i);
+		interaction(i);
+		}
+	}
+	function dessinBall(i){
 		ctx.arc(balls[i].posX,balls[i].posY,balls[i].radius,0,2*Math.PI);
 		ctx.fill();
-	        ctx.closePath();
-		}
+	    ctx.closePath();
 	}
 	//change la position de la balle
 	function mouvementball(i){
@@ -44,24 +55,47 @@
 	      balls[i].VY *= frotement;
 	      balls[i].posX += balls[i].VX;
 	      balls[i].posY += balls[i].VY;
-	      if(balls[i].posY + balls[i].radius > canv.height){
-	      	balls[i].VY = -balls[i].VY-gravity;
-	      }if(balls[i].posX + balls[i].radius > canv.width){
-	      	balls[i].VX = -balls[i].VX;
-	      }
+		  detectoutside(i);
 	}
-	function collision_balle(){
-		for(var i = 0; i < nbr_circles; i ++){
+	function detectoutside(i){
+	if(balls[i].posY + balls[i].radius > canv.height){//si en bas
+	      balls[i].VY = -balls[i].VY-gravity;
+		  balls[i].posY = canv.height - balls[i].radius-2;
+	}
+	if(balls[i].posY - balls[i].radius < 0){//si en bas
+	      balls[i].VY = -balls[i].VY-gravity;
+		  balls[i].posY =  balls[i].radius+2;
+	}if(balls[i].posX + balls[i].radius > canv.width){//si a droite
+	      balls[i].VX = -balls[i].VX;
+		  balls[i].posX = canv.width - balls[i].radius-2;
+	}if(balls[i].posX - balls[i].radius < 0){//si a gauche
+	      balls[i].VX = -balls[i].VX;
+		  balls[i].posX = balls[i].radius+2;
+	}
+	}
+	function collision_balle(i){
 			for(var v = i+1; v < nbr_circles-1; v ++){
-				if(Math.abs(balls[i].posX - balls[v].posX) > 80 && Math.abs(balls[i].posY - balls[v].posY) > 80 ){
-				attente = balls[i].VX;
-				console.log("cc");
-				balls[i].VX = -balls[v].VX;
-				balls[v].VX = -attente;
+			var dx = balls[v].posX - balls[i].posX,
+				dy = balls[v].posY - balls[i].posY,
+				d = Math.sqrt(dx*dx+dy*dy),
+				ux = dx/d,
+				uy = dy/d;
+				if(d < balls[i].radius + balls[v].radius){
+					balls[i].VX -= ux;
+					balls[i].VY -= uy;
+					balls[v].VX += ux;
+					balls[v].VY += uy;
 				}		
 			}
-		}
+	
 	}
-
+	function interaction(i){
+		if(mouseDown){
+        var dx = mouseX - balls[i].posX;
+        var dy = mouseY - balls[i].posY;
+        balls[i].VX += dx * 0.001;
+        balls[i].VY += dy * 0.001;
+		}
+      }
 })()
 </script>
