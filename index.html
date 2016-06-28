@@ -3,13 +3,18 @@
 (function(){
 var canv = document.getElementById("ctx");
 var ctx = canv.getContext("2d");
-var ball = {
-     posX: 350,
-     posY: 250,
+var balls = [];
+var nbr_circles = 10;
+
+for(var i = 0; i < nbr_circles; i ++){
+balls.push ({
+     posX: random() * canv.width,
+     posY: random() * canv.height,
      VX: 0,
      VY: 0,
      radius: 20
-};
+});
+}
 var gravity = 0.02;
 var frotement = 0.995;
 setInterval(dessinball, 10);
@@ -21,21 +26,23 @@ function(pos){//si on presse la souris
 });
 //dessine la balle
 function dessinball(){
-	mouvementball();
         ctx.clearRect(0,0,canv.width,canv.height);
 	ctx.beginPath();
-	ctx.arc(ball.posX,ball.posY,ball.radius,0,2*Math.PI);
+	for(var i = 0; i < nbr_circles; i ++){
+	mouvementball(i);
+	ctx.arc(balls[i].posX,balls[i].posY,balls[i].radius,0,2*Math.PI);
+	}
 	ctx.closePath();
 	ctx.fill();
 }
 //change la position de la balle
-function mouvementball(){
-      ball.VY += gravity;
-      ball.VY *= frotement;
-      ball.posX += ball.VX;
-      ball.posY += ball.VY;
-      if(ball.posY + ball.radius > canv.height){
-      	ball.VY = -ball.VY-gravity;
+function mouvementball(var i){
+      balls[i].VY += gravity;
+      balls[i].VY *= frotement;
+      balls[i].posX += balls[i].VX;
+      balls[i].posY += balls[i].VY;
+      if(balls[i].posY + balls[i].radius > canv.height){
+      	balls[i].VY = -balls[i].VY-gravity;
       }
       
 }
