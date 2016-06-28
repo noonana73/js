@@ -37,6 +37,7 @@ function dessinball(){
 }
 //change la position de la balle
 function mouvementball(i){
+	collision_balle();
       balls[i].VY += gravity;
       balls[i].VX *= frotement;
       balls[i].VY *= frotement;
@@ -47,7 +48,17 @@ function mouvementball(i){
       }if(balls[i].posX + balls[i].radius > canv.width){
       	balls[i].VX = -balls[i].VX;
       }
-      
+function collision_balle(){
+for(var i = 0; i < nbr_circles; i ++){
+	for(var v = v+1; v < nbr_circles-1; v ++){
+	if(Math.abs(balls[i].posX - balls[v].posX) < balls[i].radius + balls[v].radius && Math.abs(balls[i].posY - balls[v].posY) < balls[i].radius + balls[v].radius){
+		var attente = balls[i].VX;
+		balls[i].VX = -balls[v].VX;
+		balls[v].VX = -attente;
+	}		
 }
+}
+}
+
 })()
 </script>
