@@ -55,6 +55,7 @@
 			for(var v = v+1; v < nbr_circles-1; v ++){
 				if(Math.abs(balls[i].posX - balls[v].posX) < balls[i].radius + balls[v].radius && Math.abs(balls[i].posY - balls[v].posY) < balls[i].radius + balls[v].radius){
 				attente = balls[i].VX;
+				console.log("cc");
 				balls[i].VX = -balls[v].VX;
 				balls[v].VX = -attente;
 				}		
