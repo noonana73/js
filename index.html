@@ -44,6 +44,8 @@ function mouvementball(i){
       balls[i].posY += balls[i].VY;
       if(balls[i].posY + balls[i].radius > canv.height){
       	balls[i].VY = -balls[i].VY-gravity;
+      }if(balls[i].posX + balls[i].radius > canv.width){
+      	balls[i].VX = -balls[i].VX;
       }
       
 }
