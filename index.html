@@ -27,12 +27,12 @@ function(pos){//si on presse la souris
 //dessine la balle
 function dessinball(){
         ctx.clearRect(0,0,canv.width,canv.height);
-	ctx.beginPath();
 	for(var i = 0; i < nbr_circles; i ++){
 	mouvementball(i);
+		ctx.beginPath();
 	ctx.arc(balls[i].posX,balls[i].posY,balls[i].radius,0,2*Math.PI);
+		ctx.closePath();
 	}
-	ctx.closePath();
 	ctx.fill();
 }
 //change la position de la balle
